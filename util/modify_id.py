@@ -50,10 +50,11 @@ def modify_id(dwUserID, dwGrowID, nValue):
     dwMoneyAcctType = 0
 
     pack_format = "2L2H3L8L4s2L1H2L1i64s1n3L"
-    socket_data = pack(pack_format, dwMagic, dwSerial, wOrigine, wReserve, dwType, dwParam, dwLength,
-                       dwUserID, dwMPID, dwGameID, dwPlatType, dwReserve1, dwReserve2, dwReserve3,
-                       dwPort, tMatchBegin, dwTourneyID, dwMatchID, wGrowDomainID, dwRank,
-                       dwGrowID, nValue, szNote, byOSType, dwAppID, dwSiteID, dwMoneyAcctType)
+    socket_data = pack(
+        pack_format, dwMagic, dwSerial, wOrigine, wReserve, dwType, dwParam, dwLength,
+        dwUserID, dwMPID, dwGameID, dwPlatType, dwReserve1, dwReserve2, dwReserve3, dwPort, tMatchBegin, dwTourneyID,
+        dwMatchID, wGrowDomainID, dwRank, dwGrowID, nValue, szNote, byOSType, dwAppID, dwSiteID, dwMoneyAcctType
+    )
 
     s.send(socket_data)
     chunk = s.recv(1024)

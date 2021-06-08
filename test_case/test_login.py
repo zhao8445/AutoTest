@@ -1,7 +1,8 @@
 from common.myunit import StartEnd
-from business.loginView import LoginView
+from view.login_view.login_view import LoginView
 import unittest
 import logging
+
 
 class TestLogin(StartEnd):
     csv_file = '../data/account.csv'
@@ -28,6 +29,7 @@ class TestLogin(StartEnd):
 
         l.login_action(data[0], data[1])
         self.assertTrue(l.check_loginStatus(), msg='login fail!')
+
 
 if __name__ == '__main__':
     unittest.main()

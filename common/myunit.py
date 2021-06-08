@@ -6,7 +6,6 @@ from airtest.core.api import *
 import unittest
 import logging
 from time import sleep
-import sys
 
 
 class StartEnd(unittest.TestCase):
