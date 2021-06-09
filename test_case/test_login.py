@@ -1,5 +1,5 @@
 from common.myunit import StartEnd
-from view.login_view.login_view import LoginView
+from test_view.login_view.login_view import LoginView
 import unittest
 import logging
 
