@@ -26,12 +26,11 @@ class LoginView:
         :return:
         """
         try:
-            wait(Template(r"../../imgs/login/continue_as_guest.png", record_pos=(0.002, 0.196), resolution=(1280, 800)),
-                 timeout=15, interval=5)
-            touch(
-                Template(r"../../imgs/login/continue_as_guest.png", record_pos=(0.005, 0.193), resolution=(1280, 800)))
+            position = wait(Template(r"../../imgs/login/continue_as_guest.png", record_pos=(0.002, 0.196), resolution=(1280, 800)),
+                 timeout=20, interval=1)
+            touch(position)
         except TargetNotFoundError:
-            print("未找到登陆按钮")
+            print("Login as Guest Button Not Found")
 
     def close_tap(self):
         """
@@ -40,23 +39,35 @@ class LoginView:
         """
         try:
             position = wait(Template(r"../../imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                     resolution=(2232, 1080)), timeout=10, interval=5)
+                                     resolution=(2232, 1080)), timeout=5, interval=1)
             while position:
                 touch(position)
                 position = wait(Template(r"../../imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                         resolution=(2232, 1080)), timeout=10, interval=5)
+                                         resolution=(2232, 1080)), timeout=5, interval=1)
         except TargetNotFoundError:
-            print("未找到TAg关闭按钮")
+            print("Tag Close Button Not Found")
             pass
 
     def check_logined(self):
+        """
+        检测是否登陆成功
+        :return:
+        """
         try:
-            assert_exists(
-                Template(r"../../imgs/login/play_now_btn.png", record_pos=(-0.001, 0.205), resolution=(2232, 1080)),
-                "通过PLAY_NOW按钮判断是否登陆")
+            assert_exists(Template(r"../../imgs/login/play_now_btn.png", record_pos=(-0.001, 0.205),
+                                   resolution=(2232, 1080)), "通过PLAY_NOW按钮判断是否登陆")
             return True
         except AssertionError:
             return False
+
+    def logout(self):
+        """
+        退出游戏并清理缓存
+        :return:
+        """
+        sleep(5)
+        clear_app(PACKAGE_NAME)
+        stop_app(PACKAGE_NAME)
 
 #
 # if __name__ == '__main__':

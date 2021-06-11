@@ -4,17 +4,15 @@ __author__ = "zhaobl01"
 
 import re
 
-from airtest.core.api import *
-from airtest.aircv import *
 from airtest.cli.parser import cli_setup
 
-from common import common
+from common.common import *
 from test_view.login_view.login_view import LoginView
 from config.settings import params
 
 if not cli_setup():
     project_root = sys.path[1].replace("\\", "/")
-    auto_setup(__file__, logdir=True, devices=["Android:///", ], project_root=project_root)
+    auto_setup(__file__, logdir=False, devices=["Android:///", ], project_root=project_root)
 
 PACKAGE_NAME = params["package_name"]
 
@@ -34,33 +32,55 @@ class Prize:
             center = wait(
                 Template(r"../../imgs/icon/cash_icon.png", threshold=0.6999999999999997,
                          target_pos=1, record_pos=(-0.349, -0.224),
-                         resolution=(2232, 1080), ), timeout=20, interval=3
+                         resolution=(2232, 1080), ), timeout=5, interval=1
             )
+            x = center[0]
+            y = center[1]
+
+            img_path = partial_screenshot(x, y, x + 200, y + 50, "get_cash.png")
+
+            cash_result = img_ocr(img_path)
+            cash_result = re.findall("(\d+)", cash_result)
+            cash_result = "".join(cash_result)
         except TargetNotFoundError:
-            print("未找现金")
-        x = center[0]
-        y = center[1]
-
-        auto_setup(__file__)
-        screen = G.DEVICE.snapshot()
-
-        # 局部截图
-        local = aircv.crop_image(screen, (x, y, x + 200, y + 60))
-        snapshot(filename='get_cash.png')
-
-        # 保存局部截图到测试结果集文件夹中
-        pil_image = cv2_2_pil(local)
-        pil_image.save("../../test_result_imgs/get_cash.png", quality=99, optimize=True)
-        img_path = self.project_path + '/test_result_imgs/get_cash.png'
-        cash_result = common.img_ocr(img_path)
-        cash_result = re.findall("(\d+)", cash_result)
-        cash_result = "".join(cash_result)
-
-        sleep(5)
-        clear_app(PACKAGE_NAME)
-        stop_app(PACKAGE_NAME)
+            print("未找到现金")
 
         return cash_result
+
+    def draw_span(self):
+        """
+        转盘抽奖
+        :return:
+        """
+        try:
+            spin_icon_position = wait(Template(r"./imgs/spin_icon.png", record_pos=(0.173, -0.209), resolution=(2232, 1080)),
+                 timeout=5, interval=1)
+            touch(spin_icon_position)
+        except TargetNotFoundError:
+            print("SPIN icon Not Found")
+            pass
+        try:
+            spin_btn_position = wait(Template(r"./imgs/spin_btn.png", record_pos=(0.001, -0.006), resolution=(2232, 1080)),
+                 timeout=5, interval=1)
+            touch(spin_btn_position)
+        except TargetNotFoundError:
+            print("SPIN Button Not Found")
+            pass
+        try:
+            collect_btn_postion = wait(
+                Template(r"./imgs/collect_btn.png", target_pos=1, record_pos=(-0.004, 0.093), resolution=(2232, 1080)),
+                timeout=5, interval=1,
+            )
+            x_start, y_start = collect_btn_postion[0], collect_btn_postion[1]
+            img_path = partial_screenshot(x_start, y_start, x_start + 400, y_start - 100, "./imgs/collected_chips.png")
+            touch((x_start+200, y_start+50))
+            cash = img_ocr(img_path)
+            reward_cash = int("".join(re.findall("(\d+)K", cash))) * 1000
+            return reward_cash
+        except TargetNotFoundError:
+            print("Collect Button Not Found")
+        click_close_btn()
+        return 0
 
 
 if __name__ == '__main__':
@@ -72,7 +92,14 @@ if __name__ == '__main__':
     if logined:
         print("登陆成功")
         p = Prize()
-        cash = p.get_cash()
-        print("现金数:", cash)
+        before_collected_cash = p.get_cash()
+        reward_cash = p.draw_span()
+        after_colleted_cash = p.get_cash()
+        collected_cash = int(after_colleted_cash) - int(before_collected_cash)
+        print("领取前的筹码数", before_collected_cash)
+        print("领取后的筹码数", after_colleted_cash)
+        print("奖励的筹码数为", reward_cash)
+        print("领取的筹码数为", collected_cash)
     else:
         print("登陆未成功")
+    login.logout()
