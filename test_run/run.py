@@ -8,7 +8,7 @@ path = sys.path[1].replace('\\', "/")
 test_dir = path + '/test_case'
 report_dir = path + '/reports'
 
-discover = unittest.defaultTestLoader.discover(test_dir, pattern='test_login.py')
+discover = unittest.defaultTestLoader.discover(test_dir, pattern='test_prize.py')
 
 now = time.strftime('%Y-%m-%d %H_%M_%S')
 report_name = report_dir + '/' + now + ' test_report.html'

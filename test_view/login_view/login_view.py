@@ -2,18 +2,9 @@
 
 __author__ = "zhaobl01"
 
-from airtest.core.api import *
-from airtest.aircv import *
-from airtest.cli.parser import cli_setup
-
-from config.settings import params
-
-if not cli_setup():
-    project_root = sys.path[1].replace("\\", "/")
-    auto_setup(__file__, logdir=True, devices=["Android:///", ], project_root=project_root)
+from base_view.base_view import *
 
 PACKAGE_NAME = params["package_name"]
-
 
 class LoginView:
     def __init__(self):
@@ -26,11 +17,13 @@ class LoginView:
         :return:
         """
         try:
-            position = wait(Template(r"../../imgs/login/continue_as_guest.png", record_pos=(0.002, 0.196), resolution=(1280, 800)),
-                 timeout=20, interval=1)
+            position = wait(Template(
+                PROJECT_ROOT_PATH + r"/imgs/login/continue_as_guest.png", record_pos=(0.002, 0.196),
+                resolution=(1280, 800), threshold=0.7), timeout=20, interval=1)
             touch(position)
         except TargetNotFoundError:
-            print("Login as Guest Button Not Found")
+            # print("Login as Guest Button Not Found")
+            pass
 
     def close_tap(self):
         """
@@ -38,14 +31,14 @@ class LoginView:
         :return:
         """
         try:
-            position = wait(Template(r"../../imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                     resolution=(2232, 1080)), timeout=5, interval=1)
+            position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
+                                     resolution=(2232, 1080), threshold=0.7), timeout=10, interval=1)
             while position:
                 touch(position)
-                position = wait(Template(r"../../imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                         resolution=(2232, 1080)), timeout=5, interval=1)
+                position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
+                                         resolution=(2232, 1080), threshold=0.7), timeout=5, interval=1)
         except TargetNotFoundError:
-            print("Tag Close Button Not Found")
+            # print("Tag Close Button Not Found")
             pass
 
     def check_logined(self):
@@ -54,8 +47,8 @@ class LoginView:
         :return:
         """
         try:
-            assert_exists(Template(r"../../imgs/login/play_now_btn.png", record_pos=(-0.001, 0.205),
-                                   resolution=(2232, 1080)), "通过PLAY_NOW按钮判断是否登陆")
+            assert_exists(Template(PROJECT_ROOT_PATH + r"/imgs/login/play_now_btn.png", record_pos=(-0.001, 0.205),
+                                   resolution=(2232, 1080), threshold=0.7), "通过PLAY_NOW按钮判断是否登陆")
             return True
         except AssertionError:
             return False

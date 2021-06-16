@@ -1,4 +1,4 @@
-from common.myunit import StartEnd
+from base_view.base_unit import *
 from test_view.login_view.login_view import LoginView
 import unittest
 import logging
