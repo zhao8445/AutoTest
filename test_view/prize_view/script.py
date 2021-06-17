@@ -22,3 +22,4 @@ wait(Template(r"cash_icon.png", record_pos=(-0.365, -0.23), resolution=(2232, 10
 wait(Template(r"play_now_btn.png", record_pos=(-0.002, 0.214), resolution=(2232, 1080)))
 
 
+sleep(1.0)

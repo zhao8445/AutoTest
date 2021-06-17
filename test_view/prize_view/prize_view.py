@@ -5,6 +5,9 @@ import re
 from base_view.base_view import *
 from test_view.login_view.login_view import LoginView
 
+from utils import baidu_ocr
+
+
 PACKAGE_NAME = params["package_name"]
 IMGS_PATH = PROJECT_ROOT_PATH + '/test_view/prize_view/imgs/'
 """
@@ -104,11 +107,11 @@ class PrizeView:
             x_start = center[0]
             y_start = center[1]
 
-            img_path = partial_screenshot(x_start, y_start, x_start + 200, y_start + 40, "get_cash.png")
+            img_path = partial_screenshot(x_start+40, y_start, x_start+200, y_start+40, "get_cash.png")
 
-            cash_result = img_ocr(img_path)
-            cash_result = re.findall("(\d+)", cash_result)
-            cash_result = "".join(cash_result)
+            cash_result = baidu_ocr.img_ocr(img_path)
+            cash_result = "".join(list(filter(str.isdigit, cash_result)))
+            # cash_result = int(cash_result.replace(",", "").replace(".", ""))
         except TargetNotFoundError:
             print("未找到现金icon")
 
@@ -128,6 +131,7 @@ class PrizeView:
             print("SPIN icon Not Found")
             pass
         try:
+            sleep(5)
             spin_btn_position = wait(
                 Template(IMGS_PATH + r"spin_btn.png", record_pos=(0.001, -0.006), resolution=(2232, 1080)),
                  timeout=5, interval=1)
@@ -146,7 +150,8 @@ class PrizeView:
             img_path = partial_screenshot(x_start, y_start-100, x_start + 400, y_start, "collected_chips.png")
             touch((x_start+200, y_start+40))
             cash = img_ocr(img_path)
-            reward_cash = int("".join(re.findall("(\d+)K", cash))) * 1000
+            # reward_cash = int("".join(re.findall("(\d+)K", cash))) * 1000
+            reward_cash = int("".join(list(filter(str.isdigit, cash)))) * 1000
             click_close_btn()
             return reward_cash
         except TargetNotFoundError:

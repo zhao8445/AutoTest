@@ -1,3 +1,5 @@
+import shutil
+
 from PIL import Image
 from pytesseract import *
 

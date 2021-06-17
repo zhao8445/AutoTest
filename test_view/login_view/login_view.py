@@ -32,11 +32,11 @@ class LoginView:
         """
         try:
             position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                     resolution=(2232, 1080), threshold=0.7), timeout=10, interval=1)
+                                     resolution=(2232, 1080), threshold=0.8), timeout=10, interval=1)
             while position:
                 touch(position)
                 position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                         resolution=(2232, 1080), threshold=0.7), timeout=5, interval=1)
+                                         resolution=(2232, 1080), threshold=0.8), timeout=5, interval=1)
         except TargetNotFoundError:
             # print("Tag Close Button Not Found")
             pass
