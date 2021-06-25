@@ -6,6 +6,7 @@ from pytesseract import *
 from airtest.core.api import *
 from airtest.aircv import *
 from airtest.cli.parser import cli_setup
+from airtest.report.report import simple_report
 
 from config.settings import params
 
@@ -23,8 +24,8 @@ def img_ocr(img_path):
     :return: 识别结果
     """
     pic = Image.open(img_path)
-    pic_gray = pic.convert("L")
-    # pic_gray.show()
+    pic_gray = pic.convert("1")
+    pic_gray.show()
     text = image_to_string(pic_gray)
     return text
 
@@ -39,13 +40,13 @@ def partial_screenshot(x_start, y_start, x_end, y_end, filename):
     :return:
     """
     auto_setup(__file__)
-    screen = G.DEVICE.snapshot()
+    screen = G.DEVICE.snapshot(quality=99)
 
     # 局部截图
     local = aircv.crop_image(screen, (x_start, y_start, x_end, y_end))
 
     # 保存局部截图到测试结果集文件夹中
-    pil_image = cv2_2_pil(local)
+    pil_image = cv2_2_pil(local).convert()
     save_path = PROJECT_ROOT_PATH + '/test_result_imgs/' + filename
     pil_image.save(save_path, quality=99, optimize=True)
 

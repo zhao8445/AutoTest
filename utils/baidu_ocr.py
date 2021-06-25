@@ -47,11 +47,14 @@ def img_ocr(img_path):
     response = requests.post(request_url, data=params, headers=headers)
     if response:
         response = response.json()
+        # print(response)
         words = response["words_result"][0]["words"]
-        print(response)
-        print(words)
+        # print(words)
         f.close()
         return words
 
     f.close()
     return ""
+
+img_path = PROJECT_ROOT_PATH + "/test_result_imgs/get_cash.png"
+img_ocr(img_path)

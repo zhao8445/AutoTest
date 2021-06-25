@@ -1,9 +1,4 @@
-from airtest.core.api import *
-from airtest.report.report import simple_report
-
 import unittest
-import logging
-from time import sleep
 
 from test_view.login_view.login_view import LoginView
 

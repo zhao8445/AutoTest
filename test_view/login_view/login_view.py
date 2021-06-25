@@ -61,8 +61,3 @@ class LoginView:
         sleep(5)
         clear_app(PACKAGE_NAME)
         stop_app(PACKAGE_NAME)
-
-#
-# if __name__ == '__main__':
-#     l = LoginView()
-#     l.login_as_guest()
