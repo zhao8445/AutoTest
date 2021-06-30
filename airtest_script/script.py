@@ -8,23 +8,12 @@ if not cli_setup():
     auto_setup(__file__, logdir=True, devices=["android://127.0.0.1:5037/926QADV3227V4?cap_method=MINICAP_STREAM&&ori_method=MINICAPORI&&touch_method=MINITOUCH",])
  
 
-
-wait(Template(r"slot_machine_icon.png", record_pos=(0.348, -0.22), resolution=(2232, 1080)))
-wait(Template(r"spin_btn.png", record_pos=(0.002, 0.125), resolution=(2232, 1080)))
-wait(Template(r"add_btn.png", record_pos=(0.082, 0.131), resolution=(2232, 1080)))
-wait(Template(r"sub_btn.png", record_pos=(-0.083, 0.128), resolution=(2232, 1080)))
-
-    
+wait(Template(r"tpl1624937238741.png", threshold=0.9000000000000001, record_pos=(0.279, -0.221), resolution=(2232, 1080)))
+wait(Template(r"golden_token.png", record_pos=(0.13, 0.043), resolution=(2232, 1080)))
+wait(Template(r"collect_btn.png", record_pos=(-0.003, 0.1), resolution=(2232, 1080)))
 
 
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     
     

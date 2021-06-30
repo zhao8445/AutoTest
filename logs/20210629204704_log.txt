@@ -1,0 +1,14 @@
+[2021-06-29 20:47:11,937] - login_view.py - line:24 - INFO: 点击访客登陆按钮
+[2021-06-29 20:47:17,687] - login_view.py - line:51 - INFO: ---登陆成功---
+[2021-06-29 20:47:25,969] - test_dailybonus.py - line:14 - INFO: ******点击每日签到******
+[2021-06-29 20:47:31,489] - daily_bonus_view.py - line:40 - INFO: 点击签到
+[2021-06-29 20:47:37,799] - daily_bonus_view.py - line:50 - INFO: 点击收集奖励
+[2021-06-29 20:47:50,429] - login_view.py - line:63 - INFO: ---退出游戏---
+[2021-06-29 20:47:56,736] - login_view.py - line:24 - INFO: 点击访客登陆按钮
+[2021-06-29 20:48:17,930] - login_view.py - line:54 - INFO: ---登陆失败---
+[2021-06-29 20:48:19,810] - login_view.py - line:24 - INFO: 点击访客登陆按钮
+[2021-06-29 20:48:24,862] - login_view.py - line:51 - INFO: ---登陆成功---
+[2021-06-29 20:48:33,043] - test_slotmachine.py - line:14 - INFO: *******抽取老虎机******
+[2021-06-29 20:48:34,530] - slot_machine_view.py - line:26 - INFO: 点击老虎机icon
+[2021-06-29 20:48:37,590] - slot_machine_view.py - line:65 - INFO: 点击'spin'按钮
+[2021-06-29 20:48:54,944] - login_view.py - line:63 - INFO: ---退出游戏---

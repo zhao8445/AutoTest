@@ -1,7 +1,6 @@
 import unittest
 from site_packages.BSTestRunner import BSTestRunner
 import time
-import logging
 import sys
 
 path = sys.path[1].replace('\\', "/")
@@ -17,6 +16,5 @@ with open(report_name, 'wb') as f:
     runner = BSTestRunner(
         stream=f, title='AuguPoker Report', description='AuguPoker App Test Report'
     )
-    logging.info('start run test case...')
     runner.run(discover)
 

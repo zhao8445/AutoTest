@@ -32,13 +32,12 @@ class PrizeView:
             x_start = center[0]
             y_start = center[1]
 
-            img_path = partial_screenshot(x_start+40, y_start, x_start+200, y_start+40, "get_cash.png")
+            img_path = bv.partial_screenshot(x_start+40, y_start, x_start+200, y_start+40, "get_cash.png")
 
             cash_result = baidu_ocr.img_ocr(img_path)
             cash_result = "".join(list(filter(str.isdigit, cash_result)))
         except TargetNotFoundError:
-            pass
-            # print("未找到现金icon")
+            logger.error("未找到现金icon")
 
         return cash_result
 
@@ -52,8 +51,7 @@ class PrizeView:
                  timeout=5, interval=1)
             touch(spin_icon_position)
         except TargetNotFoundError:
-            # print("SPIN icon Not Found")
-            pass
+            logger.error("未找到'SPIN'图标icon")
 
     def click_spin_btn(self):
         """
@@ -66,8 +64,7 @@ class PrizeView:
                  timeout=5, interval=1)
             touch(spin_btn_position)
         except TargetNotFoundError:
-            # print("SPIN Button Not Found")
-            pass
+            logger.error("未找到'SPIN'按钮")
 
     def draw_span(self):
         """
@@ -88,12 +85,12 @@ class PrizeView:
 
             x_start = collect_btn_postion[0]
             y_start = collect_btn_postion[1]
-            img_path = partial_screenshot(x_start+30, y_start-70, x_start+350, y_start-30, "collected_chips.png")
+            img_path = bv.partial_screenshot(x_start+30, y_start-70, x_start+350, y_start-30, "collected_chips.png")
             reward = baidu_ocr.img_ocr(img_path)
             if "RING" in reward:
                 reward_cash = "RING"
                 touch((x_start + 200, y_start + 40))
-                click_close_btn()
+                bv.click_close_btn()
             else:
                 for chip in reward_chips:
                     reward_chip_img = REWARD_CHIP_IMG_PATH + "/prize_view/imgs/reward_chips/" + chip + "k.png"
@@ -107,13 +104,12 @@ class PrizeView:
                         if position:
                             reward_cash = int(chip) * 1000
                             touch((x_start + 200, y_start + 40))
-                            click_close_btn()
+                            bv.click_close_btn()
                             break
                     except:
-                        # print("none")
                         pass
             return reward_cash
         except TargetNotFoundError:
-            # print("Collect Button Not Found")
-            click_close_btn()
+            logger.error("未找到'COLLECT'按钮")
+            bv.click_close_btn()
             return 0

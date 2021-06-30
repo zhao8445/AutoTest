@@ -19,26 +19,25 @@ class LoginView:
         try:
             position = wait(Template(
                 PROJECT_ROOT_PATH + r"/imgs/login/continue_as_guest.png", record_pos=(0.002, 0.196),
-                resolution=(1280, 800), threshold=0.7), timeout=20, interval=1)
+                resolution=(1280, 800), threshold=0.7), timeout=60, interval=1)
             touch(position)
+            logger.info("点击访客登陆按钮")
         except TargetNotFoundError:
-            # print("Login as Guest Button Not Found")
+            logger.info("访客登陆按钮未找到")
             pass
 
     def close_tap(self):
         """
         关闭签到登陆等tab页
-        :return:
         """
         try:
             position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
-                                     resolution=(2232, 1080), threshold=0.8), timeout=10, interval=1)
+                                     resolution=(2232, 1080), threshold=0.8), timeout=20, interval=1)
             while position:
                 touch(position)
                 position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
                                          resolution=(2232, 1080), threshold=0.8), timeout=5, interval=1)
         except TargetNotFoundError:
-            # print("Tag Close Button Not Found")
             pass
 
     def check_logined(self):
@@ -49,8 +48,10 @@ class LoginView:
         try:
             assert_exists(Template(PROJECT_ROOT_PATH + r"/imgs/login/play_now_btn.png", record_pos=(-0.001, 0.205),
                                    resolution=(2232, 1080), threshold=0.7), "通过PLAY_NOW按钮判断是否登陆")
+            logger.info("---登陆成功---")
             return True
         except AssertionError:
+            logger.info("---登陆失败---")
             return False
 
     def logout(self):
@@ -59,5 +60,6 @@ class LoginView:
         :return:
         """
         sleep(5)
+        logger.info("---退出游戏---")
         clear_app(PACKAGE_NAME)
         stop_app(PACKAGE_NAME)
