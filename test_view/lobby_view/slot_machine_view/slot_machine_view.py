@@ -23,7 +23,7 @@ class SlotMachineView:
                 Template(IMGS_PATH + r"slot_machine_icon.png", record_pos=(0.348, -0.22), resolution=(2232, 1080))
             )
             touch(position)
-            logger.info("点击老虎机icon")
+            logger.info("点击老虎机ICON")
         except TargetNotFoundError:
             logger.error("未找到老虎机ICON")
 
@@ -62,6 +62,6 @@ class SlotMachineView:
                 Template(IMGS_PATH + r"spin_btn.png", record_pos=(0.002, 0.125), resolution=(2232, 1080))
             )
             touch(position)
-            logger.info("点击'spin'按钮")
+            logger.info("点击SPIN按钮")
         except TargetNotFoundError:
-            logger.error("未找到老虎机'SPIN'按钮")
+            logger.error("未找到老虎机SPIN按钮")

@@ -28,7 +28,8 @@ class BaseView:
             os.mkdir(log_path)
         handler = logging.FileHandler(log_path + now + "_log.txt")
         handler.setLevel(logging.DEBUG)
-        fmt = "[%(asctime)s] - %(filename)s - line:%(lineno)2d - %(levelname)s: %(message)s"
+        # fmt = "[%(asctime)s] - %(filename)20s - line:%(lineno)2d - %(levelname)s: %(message)s"
+        fmt = "[%(asctime)s] - %(levelname)5s: %(message)s"
         formatter = logging.Formatter(fmt)
         handler.setFormatter(formatter)
         logger.addHandler(handler)
@@ -54,7 +55,6 @@ class BaseView:
         pil_image = cv2_2_pil(local).convert()
         save_path = PROJECT_ROOT_PATH + '/test_result_imgs/' + filename
         pil_image.save(save_path, quality=99, optimize=True)
-        logger.info("局部截图 %s" % filename)
 
         return save_path
 
@@ -80,10 +80,21 @@ class BaseView:
                 )
         except TargetNotFoundError:
             pass
-            # logger.error("关闭按钮未找到")
+
+    def read_txt(self, txt_path):
+        """
+        阅读打开txt文件
+        :param txt_path: txt文件路径
+        :return: 文件内容结果集
+        """
+        res = []
+        with open(txt_path, encoding="utf-8") as f:
+            lines = f.readlines()
+        for line in lines:
+            res.append(line.strip('\n'))
+        return res
 
 
 bv = BaseView()
 logger = bv.setLog()
-
 

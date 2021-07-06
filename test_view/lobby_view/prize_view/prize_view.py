@@ -6,7 +6,6 @@ from base_view.base_view import *
 from utils import baidu_ocr
 
 
-PACKAGE_NAME = params["package_name"]
 REWARD_CHIP_IMG_PATH = params["reward_chip_img_path"]
 IMGS_PATH = PROJECT_ROOT_PATH + '/test_view/lobby_view/prize_view/imgs/'
 
@@ -32,12 +31,13 @@ class PrizeView:
             x_start = center[0]
             y_start = center[1]
 
-            img_path = bv.partial_screenshot(x_start+40, y_start, x_start+200, y_start+40, "get_cash.png")
+            img_path = bv.partial_screenshot(x_start+40, y_start, x_start+200, y_start+40, 'get_cash.png')
+            logger.debug("截取现金数目图片")
 
             cash_result = baidu_ocr.img_ocr(img_path)
             cash_result = "".join(list(filter(str.isdigit, cash_result)))
         except TargetNotFoundError:
-            logger.error("未找到现金icon")
+            logger.error("未找到现金ICON")
 
         return cash_result
 
@@ -50,8 +50,9 @@ class PrizeView:
                 Template(IMGS_PATH + r"spin_icon.png", record_pos=(0.173, -0.209), resolution=(2232, 1080)),
                  timeout=5, interval=1)
             touch(spin_icon_position)
+            logger.debug("点击转盘抽奖ICON")
         except TargetNotFoundError:
-            logger.error("未找到'SPIN'图标icon")
+            logger.error("未找到SPIN图标ICON")
 
     def click_spin_btn(self):
         """
@@ -63,8 +64,9 @@ class PrizeView:
                 Template(IMGS_PATH + r"spin_btn.png", record_pos=(0.001, -0.006), resolution=(2232, 1080)),
                  timeout=5, interval=1)
             touch(spin_btn_position)
+            logger.debug("点击SPIN按钮")
         except TargetNotFoundError:
-            logger.error("未找到'SPIN'按钮")
+            logger.error("未找到SPIN按钮")
 
     def draw_span(self):
         """
@@ -85,7 +87,8 @@ class PrizeView:
 
             x_start = collect_btn_postion[0]
             y_start = collect_btn_postion[1]
-            img_path = bv.partial_screenshot(x_start+30, y_start-70, x_start+350, y_start-30, "collected_chips.png")
+            img_path = bv.partial_screenshot(x_start+30, y_start-70, x_start+350, y_start-30, 'collected_chips.png')
+            logger.debug("截取转盘奖励图片")
             reward = baidu_ocr.img_ocr(img_path)
             if "RING" in reward:
                 reward_cash = "RING"
@@ -110,6 +113,6 @@ class PrizeView:
                         pass
             return reward_cash
         except TargetNotFoundError:
-            logger.error("未找到'COLLECT'按钮")
+            logger.error("未找到COLLECT按钮")
             bv.click_close_btn()
             return 0

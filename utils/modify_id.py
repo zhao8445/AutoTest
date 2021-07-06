@@ -1,8 +1,12 @@
 import socket
 from struct import *
+from data.user import user
 
-SOCKET_IP = "192.168.7.40"
-SOCKET_PORT = 30070
+# SOCKET_IP = "192.168.7.40"
+# SOCKET_PORT = 30070
+
+SOCKET_IP = "192.168.6.145"
+SOCKET_PORT = 30080
 
 
 def modify_id(dwUserID, dwGrowID, nValue):
@@ -65,7 +69,7 @@ def modify_id(dwUserID, dwGrowID, nValue):
 
 
 if __name__ == "__main__":
-    dwUserID = 210354482
-    dwGrowID = 40160101
-    nValue = 5
+    dwUserID = 682033063
+    dwGrowID = 49881005
+    nValue = -10000
     modify_id(dwUserID, dwGrowID, nValue)
