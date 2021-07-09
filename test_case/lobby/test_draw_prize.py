@@ -2,14 +2,22 @@ from base_view.base_unit import *
 from test_view.lobby_view.prize_view.prize_view import *
 
 
+
+@ddt
 class TestDrawPrize(StartEnd):
     """
     转盘抽奖模块
     """
-    def test_draw_prize(self):
+    @data(*user)
+    def test_draw_prize(self, user_info):
         """
         转盘抽奖
         """
+        # 登陆游戏
+        account = user_info["account"]
+        password = user_info["password"]
+        lv.login_by_account(account, password)
+
         logger.info("***转盘抽奖***")
         n = 0
         while n < 1:
@@ -29,3 +37,5 @@ class TestDrawPrize(StartEnd):
             n += 1
 
 
+if __name__ == "__main__":
+    unittest.main()

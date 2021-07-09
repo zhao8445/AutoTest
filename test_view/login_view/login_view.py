@@ -41,7 +41,7 @@ class LoginView:
             touch(account_position)
             sleep(2)
             text(account)
-            s = '输入账号' + account
+            s = '登陆账号:' + account
             logger.debug(s)
             self.click_confirm_btn()
         except TargetNotFoundError:
@@ -58,7 +58,7 @@ class LoginView:
             touch(password_position)
             sleep(3)
             text(password)
-            s = '输入密码' + password
+            s = '登陆密码:' + password
             logger.debug(s)
             self.click_confirm_btn()
         except TargetNotFoundError:
@@ -68,8 +68,6 @@ class LoginView:
         login_btn_position = (246, 532)
         sleep(3)
         touch(login_btn_position)
-        s = '点击login' + str(login_btn_position)
-        logger.debug(s)
 
     def click_confirm_btn(self):
         """
@@ -83,8 +81,6 @@ class LoginView:
                 ), timeout=4
             )
             touch(confirm_position)
-            s = '点击小键盘确认按钮'
-            logger.debug(s)
         except TargetNotFoundError:
             logger.error('未找到小键盘确认按钮')
 
@@ -126,6 +122,8 @@ class LoginView:
         """
         sleep(5)
         logger.info("---退出游戏---")
-        logger.info("-------------------------------")
         clear_app(PACKAGE_NAME)
         stop_app(PACKAGE_NAME)
+
+
+lv = LoginView()

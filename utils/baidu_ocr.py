@@ -33,6 +33,7 @@ def get_token():
 def img_ocr(img_path):
     """
     百度OCR文字识别
+    :return 识别结果
     """
     request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic"
 
@@ -47,7 +48,6 @@ def img_ocr(img_path):
     response = requests.post(request_url, data=params, headers=headers)
     if response:
         response = response.json()
-        # print(response)
         words = response["words_result"][0]["words"]
         # print(words)
         f.close()
@@ -56,5 +56,34 @@ def img_ocr(img_path):
     f.close()
     return ""
 
-img_path = PROJECT_ROOT_PATH + "/test_result_imgs/get_cash.png"
-img_ocr(img_path)
+def img_ocr_list(img_path):
+    """
+    百度OCR文字识别
+    :return 识别结果集
+    """
+    request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic"
+
+    # 二进制方式打开图片文件
+    f = open(img_path, 'rb')
+    img = base64.b64encode(f.read())
+
+    params = {"image": img}
+    access_token = get_token()
+    request_url = request_url + "?access_token=" + access_token
+    headers = {'content-type': 'application/x-www-form-urlencoded'}
+    response = requests.post(request_url, data=params, headers=headers)
+    if response:
+        response = response.json()
+        words_list = response["words_result"]
+        f.close()
+        return words_list
+
+    f.close()
+    return []
+
+
+
+# path = PROJECT_ROOT_PATH + '/test_result_imgs/your_chips.png'
+# r = img_ocr_list(path)
+# print(r)
+

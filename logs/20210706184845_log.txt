@@ -1,2 +1,0 @@
-[2021-07-06 18:48:45,264] -  INFO: execute setUpClass
-[2021-07-06 18:49:05,269] -  INFO: execute tearDownClass

@@ -1,9 +1,11 @@
 import unittest
-from ddt import ddt
+from ddt import ddt, data, unpack, file_data
 
 from airtest.core.api import *
+from airtest.report.report import simple_report
 
-from test_view.login_view.login_view import LoginView, logger, params
+from test_view.login_view.login_view import *
+from data.user import user
 
 PACKAGE_NAME = params["package_name"]
 PROJECT_ROOT_PATH = params["project_root_path"]
@@ -14,31 +16,17 @@ class StartEnd(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        logger.info("execute setUpClass")
+        logger.info("-------------------------------")
 
     @classmethod
     def tearDownClass(self):
-        logger.info("execute tearDownClass")
+        simple_report(__file__, logpath=True)
+        logger.info("-------------------------------")
 
     def setUp(self):
-        pass
-        # start_app(PACKAGE_NAME)
-
-        # self.login = LoginView()
-        # self.login.login_as_guest()
-        # logined = self.login.check_logined()
-        # if logined != 1:
-        #     for _ in range(3):
-        #         self.login.login_as_guest()
-        #         logined = self.login.check_logined()
-        #         if logined:
-        #             break
-        # self.assertEqual(logined, 1, "登陆未成功")
-        # self.login.close_tap()
+        clear_app(PACKAGE_NAME)
+        start_app(PACKAGE_NAME)
 
     def tearDown(self):
         sleep(5)
-        # logger.info("---退出游戏---")
-        # logger.info("-------------------------------")
-        # clear_app(PACKAGE_NAME)
-        # stop_app(PACKAGE_NAME)
+        lv.logout()

@@ -1,14 +1,15 @@
-from PIL import Image
 import logging
 
 from airtest.core.api import *
 from airtest.aircv import *
 from airtest.cli.parser import cli_setup
-from airtest.report.report import simple_report
 
 from config.settings import params
+from utils import baidu_ocr
+from utils.baidu_ocr import img_ocr_list
 
 PROJECT_ROOT_PATH = params["project_root_path"]
+IMGS_PATH = PROJECT_ROOT_PATH + "/imgs/icon/"
 
 if not cli_setup():
     project_root = sys.path[1].replace("\\", "/")
@@ -43,7 +44,7 @@ class BaseView:
         :param x_end: 终止x坐标
         :param y_end: 终止y坐标
         :param filename: 保存的文件名
-        :return:
+        :return: 图片路径
         """
         auto_setup(__file__)
         screen = G.DEVICE.snapshot(quality=99)
@@ -93,6 +94,41 @@ class BaseView:
         for line in lines:
             res.append(line.strip('\n'))
         return res
+
+    def get_ocr_result(self, start_position, end_position, filename):
+        """
+        获取图片识别结果
+        :param start_position: 图片起始坐标
+        :param end_position: 图片终止坐标
+        :param filename: 文件名
+        :return: 识别结果
+        """
+        screenshot_path = bv.partial_screenshot(
+            start_position[0], start_position[1], end_position[0], end_position[1], filename
+        )
+        ocr_result = img_ocr_list(screenshot_path)
+        return ocr_result
+
+    def get_cash(self):
+        """
+        获取现金数
+        """
+        cash_result = 0
+        try:
+            center = wait(
+                Template(IMGS_PATH + r"cash_icon.png", threshold=0.6999999999999997, target_pos=1,
+                         record_pos=(-0.349, -0.224), resolution=(2232, 1080), ), timeout=5, interval=1
+            )
+            x_start = center[0]
+            y_start = center[1]
+
+            img_path = bv.partial_screenshot(x_start+40, y_start, x_start+200, y_start+40, 'get_cash.png')
+            cash_result = baidu_ocr.img_ocr(img_path)
+            cash_result = "".join(list(filter(str.isdigit, cash_result)))
+        except TargetNotFoundError:
+            logger.error("未找到现金ICON")
+
+        return cash_result
 
 
 bv = BaseView()
