@@ -1,166 +1,239 @@
 ﻿## 项目描述
-- 基于vue-element-admin前端框架和Django服务框架实现的，面向团队内部的中后台管理系统，包括
- 	- 热更新系统 
- 	- 海外运营数据系统 
- 	- 运营配置管理系统 
- 	- 自动化工具
 
+ - 一款基于Airtest和Unittest，并融合了百度OCR文字识别技术，面向游戏的自动化测试框架
 
-  
 ## 项目背景
-
- - 当一个App发布之后，突然发现了一个严重bug需要进行紧急修复，这时候公司各方就会忙得焦头烂额：重新打包App、测试、向各个应用市场和渠道换包、提示用户升级、用户下载、覆盖安装。重点是还会有原来的版本遗留，无论你怎么提示都有人不愿升级。
-
+ - 在测试流程中为了避免版本迭代时代码的改动导致其他模块出现问题，存在着一些重复性强的回归测试，或者靠人工操作比较繁琐的测试用例，占用了大量的人力和工期，导致测试的效率降低，削弱了测试人员去发现版本迭代中逻辑性较强的功能性BUG的时间和精力，降低了产品线上质量的保证
+ 
 ## 项目意义
+ - 总功 = 有用功+无用功
+ - 效率 = 有用功/总功
+ - 增加（分子）有用功 =>
+ 将测试流程中重复性强，可回归，耗时长人工不易操作的测试用例自动化
+ - 减少（分母）无用功=>
+	将人力释放出来去发现更多版本迭代中逻辑性强的功能性BUG，从而在一定程度上		提升产品的线上质量
 
- - 热更新系统的投入，提高了开发测试效率，实现了线上不停机快速紧急修复BUG
- - 运营管理及数据展示平台，满足了产品运营对用户登录，模块点击，用户在线数等打点数据掌握，以及游戏内邮件公告发送配置，游戏内轮播图配置，兑换码配置等相关需求
+
+## 项目演示
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021062322011178.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
+
+[自动化测试框架演示](https://www.bilibili.com/video/BV1Mw411o76g/)
+
 
 ## 项目个人价值
 
- - 高效工作
-	 - 前端开发经验不足的情况下，利用加班及个人时间，在没人指导的情况下通过查阅开源框架文档网络资料，独立解决开发中遇到的问题，保障开发质量同时未影响项目开发周期的前提下，从0到1完成了热更新系统的开发任务
- - 合作意识
-	 - 在和其它组开发人员不熟的前提下，有效沟通，完成了开发任务，当在和其它开发在项目产生意见分歧时，会有效地进行沟通协商，会在一些非原则性问题，虽然增加自己工作量但是只要有利于项目也可作出退让
- - 工具平台的架构能力
-	 - 根据团队实际需要进行平台所需用的技术栈和框架的调研和选型，会选择一些开发效率高功能组件成熟完善，更适合满足团队快速轻量级开发需求的技术框架，并可利用个人时间加班进行学习，实现将新技术新框架在项目中的应用
- - 自主学习能力强效率高
-	 - 一个新的项目需要的新技术新框架，可快速短时间内学习掌握，并应用在项目
-
-## 项目演示
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621140249669.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021062114011324.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
- - 老版本的管理平台系统，由于人力有限，存在着不同分辨率显示器，不同浏览器的兼容问题，历史遗留冗余代码较多，系统分层有待完善和优化等诸多问题
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621140148494.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621140148476.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-
- - 新版本系统，前段采用了一套较为成熟的当前比较热门的后台管理前端框架，vue-element-admin，提供了更为完善的组件和功能，基本可以满足大部分当前后台的需求，界面样式，浏览器及分辨率的兼容性，权限验证等诸多问题都得到了解决，系统分层设计更加合理，代码格式规范化得到加强。
- - [老版本自动化及运营管理平台演示](https://www.bilibili.com/video/BV1e5411K73T/)
- - [新框架自动化及运营管理平台演示](https://www.bilibili.com/video/BV1cy4y1g7wb/)
- - [热更新系统演示](https://www.bilibili.com/video/BV1fK4y137GA/)
-
+ - 探索性解决问题
+	 - 在使用过程中发现存在图像识别结果不能百分百准的问题，如将5识别成S，0识别成O，经过调研决定放弃之前的图像识别插件Teserract，改用百度ocr文字识别技术，有效提升了文字识别的准确率
+ - 框架的整体架构设计能力
+	 - 挖掘在测试工作流程中影响测试效率的痛点，并通过阅读公众号及技术博客相关文章，借鉴互联网大厂在自动化测试框架上面的实践经验，结合自身团队内部的实际情况提炼出相关框架的需求，并根据需求进行测试框架系统的分层设计，各接口业务逻辑之间的关系，以及技术栈框架的选型，从而从无到有独立设计开发出一款实用性强，易维护的自动化框架
 
 ## 项目技术
 
-- #### 后端技术
+ - #### AirTest自动化测试框架
+	Airtest：是一个跨平台的、基于图像识别的UI自动化测试框架，适用于游戏和App，支持平台有Windows、Android和iOS
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621153657985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
 
- - Web开发框架Django，包含成熟完善的功能，如后台账号管理，系统注册登录等功能，满足面向团队内部快速轻量级管理平台的开发的需求
+ - #### Unittest单元测试框架
+	该unittest单元测试框架最初是由JUnit的启发，也有类似的味道在其他语言主要单元测试框架。它支持测试自动化，自动化测试case的批量管理和执行，并生成聚合报告
+ - #### 百度OCR文字识别技术
+ 	* 官方网站
+	![在这里插入图片描述](https://img-blog.csdnimg.cn/2021062115430727.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
+	* 在这里我们采取调用百度文字识别API接口的形式来进行识别图片上的文字
+		![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621154539444.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
+*	 调用百度OCR文字识别接口方法
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621163136235.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
 
-- #### 前端技术
- - Element UI
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621134812104.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
- - vue-element-admin
- ![](https://img-blog.csdnimg.cn/20210621135235183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
- 
- - vue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui实现。它使用了最新的前端技术栈，内置了 i18 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品前端框架。
- ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621141811806.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
- - GitPython 是一个 Python 库，用于与 git 存储库交互，高级如 git-porcelain，或低级如 git-plumbing。
-## 新版框架项目代码结构
-- #### 后端代码
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021062410074266.png#pic_center)
-- #### 前端代码
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210624100804573.png#pic_center)
+	* 百度智能云控制台会展示百度OCR文字识别接口调用情况
+	![在这里插入图片描述](https://img-blog.csdnimg.cn/2021062115472914.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
 
-## 新版本平台的权限验证
-- 服务端采用了Django自动用户管理Auth模块
-	![在这里插入图片描述](https://img-blog.csdnimg.cn/20210623220322366.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210623220322375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210623220429991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-- 采用rest_framework_jwt第三方库进行密码校验并生成token，在Django项目中的settings文件按照jwt的文档进行配置
+
+## 框架设计思路
+- #### 框架整体分层设计
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621155355895.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
+
+- #### base_view层
+	BaseView基类封装了一些公共方法
+	```python
+	def partial_screenshot(x_start, y_start, x_end, y_end, filename):
+	    """
+	    局部截图
+	    :param x_start: 起始x坐标
+	    :param y_start: 起始y坐标
+	    :param x_end: 终止x坐标
+	    :param y_end: 终止y坐标
+	    :param filename: 保存的文件名
+	    :return:
+	    """
+	    auto_setup(__file__)
+	    screen = G.DEVICE.snapshot(quality=99)
+	
+	    # 局部截图
+	    local = aircv.crop_image(screen, (x_start, y_start, x_end, y_end))
+	
+	    # 保存局部截图到测试结果集文件夹中
+	    pil_image = cv2_2_pil(local).convert()
+	    save_path = PROJECT_ROOT_PATH + '/test_result_imgs/' + filename
+	    pil_image.save(save_path, quality=99, optimize=True)
+	
+	    return save_path
+	
+	def click_close_btn():
+	    """
+	    点击关闭按钮
+	    :return:
+	    """
+	    try:
+	        position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
+	                                 resolution=(2232, 1080)), timeout=5, interval=1)
+	        while position:
+	            touch(position)
+	            position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
+	                                     resolution=(2232, 1080)), timeout=5, interval=1)
+	    except TargetNotFoundError:
+	        pass
+	```
+- #### config层
+	系统配置文件
+	
 
 	```python
-	REST_FRAMEWORK = {
-	    'DEFAULT_PERMISSION_CLASSES': (
-	        'rest_framework.permissions.IsAuthenticated',
-	    ),
+	import os
 	
-	    'DEFAULT_AUTHENTICATION_CLASSES': (
-	        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-	        'rest_framework.authentication.SessionAuthentication',
-	        'rest_framework.authentication.BasicAuthentication',
-	    ),
-	
+	params = {
+	    "package_name": "com.ccmt.augupoker",
+	    "project_root_path": os.path.dirname(os.path.dirname(os.path.abspath(__file__))).replace('\\', '/'),
 	}
 	```
-- 客户端输入账号密码，服务端校验成功后返回一个token，接下来客户端每次请求时会带上这个token，服务端进行校验并根据token会返回用户信息
-	![在这里插入图片描述](https://img-blog.csdnimg.cn/20210623221743875.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210623221743862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
-- 前端在动态路由文件中，在roles参数中进行权限参数的配置即可实现系统的权限管理，例如在roles参数中配置"has_hotupdate'参数，则返回的用户信息json数据roles字段下有“has_hotupdate'参数的才可看到热更新的菜单栏
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210623221856270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
 
+- #### imgs层
+	imgs层存放UI定位的图像元素		![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621160540899.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
 
-## 热更新系统设计思路
+- #### reports层
+	reports层存放测试报告
+	![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621160926640.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621160926615.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
 
- - Git打包命令：
-	 `git archive --format=zip -o path branch $(git diff --diff-filter=d revision_old revision_new --name-only)`
- - 通过GitPython库实现用Python语言调用git相关命令来进行相关的git操作
- - 将GitPython模块中Git().execute(command, shell)方法封装为git_cmd(working_dir, command)方法，调用该方法来执行"git clone"命令，克隆远程仓库代码到本地
+- #### test_view层
+	存放业务逻辑代码，例如测试登陆的业务逻辑代码login_view
 	```python
-    def clone_git(self, branch, url, to_path, username, password):
-        """
-        克隆远程git仓库代码到本地
-        :param branch: 分支名
-        :param url: 远程git仓库地址
-        :param to_path: zip包输出路径
-        :param username: git账号
-        :param password: git账号密码
-        :return: 克隆到本地的仓库路径
-        """
-        url = url.replace("http://", "")
-        url = "http://" + 'root' + ":" + password + "@" + url
-        respo_name = re.findall(r'\S+//\S+/\S+/(\S+).git', url).pop()
-        to_path = to_path + '/' + username + '/' + time.strftime("%Y%m%d_%H%M%S", time.localtime(time.time()))
-        
-        if os.path.exists(to_path):
-            shutil.rmtree(to_path, ignore_errors=True)
-        os.makedirs(to_path)
-        command = "git clone -b " + branch + " " + url
-        self.git_cmd(to_path, command)
-
-        path = to_path + "/" + respo_name
-        return path
-	        
-    def git_cmd(self, working_dir, command):
-        """
-        执行git系统命令
-        :param working_dir: 本地仓库路径
-        :param command: 所需执行的git命令
-        :return: 执行命令结果
-        """
-        exec_res = Git(working_dir).execute(command=command, shell=True)
-        return exec_res
-
-	```
-
- - 通过封装的git_cmd方法调用git archive命令将git仓库两次提交节点之间的差异文件打成zip包
-	```python
-    def git_package(self, app_version, create_time, to_path, revision_new, revision_old, output_path, package_name, branch):
-        """
-        调用git命令打出差异包
-        :param app_version: app版本号
-        :param create_time: 创建时间
-        :param revision_new: git仓库新提交节点
-        :param revision_old: git仓库老提交节点
-        :param output_path: zip包输出路径
-        :param package_name: zip差异包名
-        :param branch: 打包git仓库分支
-        :return: zip包名
-        """
-        if not os.path.exists(MEDIA_ROOT + output_path):
-            os.mkdir(MEDIA_ROOT + output_path)
-            
-        package_name = package_name + "_" + create_time + "_" + app_version + "_" + "1" + "_" + "1" ".zip"
-        command = "git archive --format=zip -o " + MEDIA_ROOT + output_path + package_name + " " + branch + " $(git diff --diff-filter=d " + revision_old + " " + revision_new + " --name-only)"
-        self.git_cmd(self.working_dir, command)
-        
-        return package_name
-	```
-
- - 将打出的差异包根据游戏ID和国家渠道等参数的配置传送给客户端
-
+	# -*- encoding=utf8 -*-
 	
+	__author__ = "zhaobl01"
+	
+	from base_view.base_view import *
+	
+	PACKAGE_NAME = params["package_name"]
+	
+	class LoginView:
+	    def __init__(self):
+	        # 启动APP
+	        start_app(PACKAGE_NAME)
+	
+	    def login_as_guest(self):
+	        """
+	        访客登陆
+	        :return:
+	        """
+	        try:
+	            position = wait(Template(
+	                PROJECT_ROOT_PATH + r"/imgs/login/continue_as_guest.png", record_pos=(0.002, 0.196),
+	                resolution=(1280, 800), threshold=0.7), timeout=20, interval=1)
+	            touch(position)
+	        except TargetNotFoundError:
+	            # print("Login as Guest Button Not Found")
+	            pass
+	
+	    def close_tap(self):
+	        """
+	        关闭签到登陆等tab页
+	        :return:
+	        """
+	        try:
+	            position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
+	                                     resolution=(2232, 1080), threshold=0.8), timeout=10, interval=1)
+	            while position:
+	                touch(position)
+	                position = wait(Template(PROJECT_ROOT_PATH + r"/imgs/icon/close_tag_icon.png", record_pos=(0.382, -0.217),
+	                                         resolution=(2232, 1080), threshold=0.8), timeout=5, interval=1)
+	        except TargetNotFoundError:
+	            # print("Tag Close Button Not Found")
+	            pass
+	
+	    def check_logined(self):
+	        """
+	        检测是否登陆成功
+	        :return:
+	        """
+	        try:
+	            assert_exists(Template(PROJECT_ROOT_PATH + r"/imgs/login/play_now_btn.png", record_pos=(-0.001, 0.205),
+	                                   resolution=(2232, 1080), threshold=0.7), "通过PLAY_NOW按钮判断是否登陆")
+	            return True
+	        except AssertionError:
+	            return False
+	
+	    def logout(self):
+	        """
+	        退出游戏并清理缓存
+	        :return:
+	        """
+	        sleep(5)
+	        clear_app(PACKAGE_NAME)
+	        stop_app(PACKAGE_NAME)
+	
+	```
+
+- #### test_case层
+	按业务划分测试case，例如测试访客登陆的测试case如下：
+	```python
+	from base_view.base_unit import *
+	from test_view.login_view.login_view import LoginView
+	import unittest
+	
+	
+	class TestLogin(StartEnd):
+	    def test_login_as_guest(self):
+	        """
+	        访客登陆测试用例
+	        """
+	        l = LoginView()
+	        l.login_as_guest()
+	```
+
+## 项目难点
+ - ##### 如何自动识别校验游戏内的数据，例如玩家持有的金币数？
+ 	* 将游戏内玩家持有金币数的界面元素进行部分截图，并存放于test_result_imgs目录下
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021062116231856.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMxNzU5MjAz,size_16,color_FFFFFF,t_70#pic_center)
+	* 将待识别的图片通过POST请求提交至百度智能云提供的文字识别OCR接口
+
+		```python
+		def img_ocr(img_path):
+		    """
+		    百度OCR文字识别
+		    """
+		    request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic"
+		
+		    # 二进制方式打开图片文件
+		    f = open(img_path, 'rb')
+		    img = base64.b64encode(f.read())
+		
+		    params = {"image": img}
+		    access_token = get_token()
+		    request_url = request_url + "?access_token=" + access_token
+		    headers = {'content-type': 'application/x-www-form-urlencoded'}
+		    response = requests.post(request_url, data=params, headers=headers)
+		    if response:
+		        response = response.json()
+		        words = response["words_result"][0]["words"]
+		        print(response)
+		        print(words)
+		        f.close()
+		        return words
+		
+		    f.close()
+		    return ""
+		```
+	* 请求返回识别结果如下
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210621162817468.jpg#pic_center)
 
 
-
-
+ 	
